@@ -1,7 +1,55 @@
-import { useState } from 'react'
-import './App.css'
-import Education from './Education'
-import Work from './Work'
+import { useState } from 'react';
+import './App.css';
+import Education from './Education';
+import Work from './Work';
+import General from './General';
+
+const generalData = [
+	{
+		label: "First Name",
+		id: 0,
+		value: "",
+	},
+	{
+		label: "Last Name",
+		id: 1,
+		value: "",
+	},
+	{ label: "Email", id: 2, value: "" },
+	{ label: "Phone Number", id: 3, value: "" },
+];
+
+const educData = [
+    {
+      label: "School Name",
+      id: 0,
+      value: "",
+    },
+    {
+      label: "Degree / Field of Study",
+      id: 1,
+      value: "",
+    },
+    { label: "Start Date", id: 2, value: "" },
+    { label: "End Date", id: 3, value: "" },
+  ];
+
+  const workData = [
+    {
+      label: "Company Name",
+      id: 0,
+      value: "",
+    },
+    {
+      label: "Position Title",
+      id: 1,
+      value: "",
+    },
+    { label: "Start Date", id: 2, value: "" },
+    { label: "End Date", id: 3, value: "" },
+    { label: "Location", id: 4, value: "" },
+    { label: "Description", id: 5, value: "" },
+  ];
 
 
 function App() {
@@ -42,25 +90,28 @@ function App() {
 
 return (
     <>
-    <div className="EducationInfo">
-        {edInfo.map((Item, index)=> <div id={edIds[index]} key={edIds[index]}>
+    <div className="edit">
+        <General generalData={generalData}/>
+        <div className="EducationInfo">
+            {edInfo.map((Item, index)=> <div id={edIds[index]} key={edIds[index]}>
+                <Item />
+                <button onClick={() => Remove(edIds[index])}>Remove</button>
+            </div>)}
+            <button onClick={Add}>Add Education Info</button>
+        </div>
+        <div className="WorkInfo">
+        {workInfo.map((Item, index)=> <div id={workIds[index]} key={workIds[index]}>
             <Item />
-            <button onClick={() => Remove(edIds[index])}>Remove</button>
+            <button onClick={() => RemoveWork(workIds[index])}>Remove</button>
         </div>)}
-        <button onClick={Add}>Add Education Info</button>
-    </div>
-    <div className="WorkInfo">
-    {workInfo.map((Item, index)=> <div id={workIds[index]} key={workIds[index]}>
-        <Item />
-        <button onClick={() => RemoveWork(workIds[index])}>Remove</button>
-    </div>)}
-    <button onClick={AddWork}>Add Work Info</button>
+        <button onClick={AddWork}>Add Work Info</button>
+        </div>
     </div>
     </>
 )
 
 }
+
  
-//RENDER EDUCATION AND WORK EXPREINCE HERE AND ADD THE "ADD MORE BUTTON UNDER THEM"
 
 export default App

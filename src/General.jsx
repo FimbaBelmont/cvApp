@@ -1,20 +1,6 @@
 import { useState } from "react";
-const generalData = [
-	{
-		label: "First Name",
-		id: 0,
-		value: "",
-	},
-	{
-		label: "Last Name",
-		id: 1,
-		value: "",
-	},
-	{ label: "Email", id: 2, value: "" },
-	{ label: "Phone Number", id: 3, value: "" },
-];
 
-export default function General() {
+export default function General({generalData}) {
 	const [data, setData] = useState(generalData);
 	const [doneS, setDone] = useState(false);
 
@@ -32,15 +18,16 @@ export default function General() {
 				}
 			})
 		);
+		console.log(data);
 	}
 
-	function Input({ itemId }) {
+	function Inputs( itemId ) {
 		if (itemId === 2) {
-			return <input type="email" />;
+			return "email" ;
 		} else if (itemId === 3) {
-			return <input type="tel" />;
+			return "tel" ;
 		} else {
-			return <input type="text" />;
+			return "text";
 		}
 	}
 
@@ -51,11 +38,12 @@ export default function General() {
 					return (
 						<div key={item.id}>
 							<label>{item.label}</label>
-							<Input
+							<input
+								type={Inputs(item.id)}
 								itemId={item.id}
+								id={"general"+item.id}
 								value={item.value}
 								onChange={(e) => handleChange(item.id, e)}
-                                require
 							/>
 						</div>
 					);
@@ -67,7 +55,7 @@ export default function General() {
 		return (
 			<>
 				{data.map((item) => (
-					<div key={item.id}>
+					<div key={item.id} >
 						<label>{item.label} :</label>
 						{item.value}
 					</div>

@@ -8,7 +8,6 @@ import Education from "./Education.jsx"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <General/>
     <App />
   </React.StrictMode>,
 )
